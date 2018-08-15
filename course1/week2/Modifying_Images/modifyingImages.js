@@ -1,6 +1,5 @@
-// write your code here
+// PART 1
 var startingImage = new SimpleImage("smalllion.jpg");
-//print(startingImage);
 
 print("Width: " + startingImage.getWidth());
 
@@ -19,6 +18,7 @@ for (var pixel of startingImage.values()) {
 print("Part One: ")
 print(startingImage);
 
+//PART 2
 function swapRedGreen(image) {
     for (var pixel of image.values()) {
         var redColor = pixel.getRed();
@@ -31,3 +31,19 @@ function swapRedGreen(image) {
 
 print("Part Two: ")
 swapRedGreen(startingImage);
+
+// PART 3
+var dukeIMG = new SimpleImage("duke_blue_devil.png");
+print("Part Three:");
+print(dukeIMG);
+
+for (var pixel of dukeIMG.pixels()) {
+    if (pixel.getBlue() >= 255) {
+        pixel.setBlue(255);
+    } else {
+        pixel.setBlue(0);
+        pixel.setRed(255);
+        pixel.setGreen(255);
+    }
+}
+print(dukeIMG);
