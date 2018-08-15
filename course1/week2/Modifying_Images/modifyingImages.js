@@ -41,9 +41,9 @@ for (var pixel of dukeIMG.pixels()) {
     if (pixel.getBlue() >= 255) {
         pixel.setBlue(255);
     } else {
-        pixel.setBlue(0);
         pixel.setRed(255);
         pixel.setGreen(255);
+        pixel.setBlue(0);
     }
 }
 print(dukeIMG);
