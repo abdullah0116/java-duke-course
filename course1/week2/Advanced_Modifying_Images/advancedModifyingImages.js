@@ -36,3 +36,37 @@ for (var px of img.values()){
   }
 }
 print (img);
+
+
+// Part 3
+function setBlack(img) {
+    img.setRed(0);
+    img.setGreen(0);
+    img.setBlue(0);
+    return img;
+}
+
+function addBorder(img, thickness) {
+    for (var pixel of img.values()) {
+        var x = pixel.getX();
+        var y = pixel.getY();
+
+        if (x < thickness) {
+            setBlack(pixel);
+        }
+        else if (x >= img.getWidth() - thickness) {
+            setBlack(pixel);
+        }
+        else if (y < thickness) {
+            setBlack(pixel);
+        }
+        else if (y >= img.getHeight() - thickness) {
+            setBlack(pixel);
+        }
+    }
+    return img;
+}
+
+var image = new SimpleImage("smallpanda.png");
+addBorder(image, 12);
+print(image);
