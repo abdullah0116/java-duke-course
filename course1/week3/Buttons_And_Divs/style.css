@@ -24,3 +24,11 @@ h1 {
 #female {
   color: lightpink;
 }
+
+#confirmation {
+  color: red;
+}
+
+#confirmedData {
+  font-family: cursive;
+}
