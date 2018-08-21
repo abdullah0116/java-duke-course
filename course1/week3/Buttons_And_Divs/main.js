@@ -32,3 +32,11 @@ function swapColors() {
   var changeCoData = document.getElementById("changeColors");
   changeCoData.className = "changeCoORG";
 }
+
+function flipText() {
+  var maleData = document.getElementById("male");
+  maleData.value = "female";
+
+  var femaleData = document.getElementById("female");
+  femaleData.value = "male";
+}
