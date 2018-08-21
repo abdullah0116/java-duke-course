@@ -6,8 +6,6 @@ function female() {
   alert('Your gender has been updated to Female.');
 }
 
-//var conformationAnswer = confirm('confirm this');
-
 function conformationText() {
   var confirmSTAT = confirm('Is the data you have selected correct?');
   var response;
@@ -19,4 +17,18 @@ function conformationText() {
   }
 
   document.getElementById("confirmedData").innerHTML = response;
+}
+
+function swapColors() {
+  var maleData = document.getElementById("male");
+  maleData.className = "malePurp";
+
+  var femaleData = document.getElementById("female");
+  femaleData.className = "femaleHP";
+
+  var confirmData = document.getElementById("confirmation");
+  confirmData.className = "confirmBlue";
+
+  var changeCoData = document.getElementById("changeColors");
+  changeCoData.className = "changeCoORG";
 }

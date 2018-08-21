@@ -8,25 +8,29 @@ h1 {
   font-size: 35px;
 }
 
+
+.confirmBlue {
+  color: purple;
+}
+
+.malePurp {
+  color: blue;
+}
+
+.femaleHP {
+  color: #ff3a54;
+}
+
+.changeCoORG {
+  color: orange;
+}
+
 #firstDiv {
   text-align: center;
 }
 
 #male {
   font-family: verdana;
-  color: lightblue;
-}
-
-.secondDiv {
-  text-align: center;
-}
-
-#female {
-  color: lightpink;
-}
-
-#confirmation {
-  color: red;
 }
 
 #confirmedData {
