@@ -41,3 +41,10 @@
     mainCTX.fillStyle = "purple";
     mainCTX.fillRect(175, 50, 40, 40);
   }
+
+  function clearRect() {
+    var mainCanvas = document.getElementById("firstCanvas");
+    var secondaryCanvas = document.getElementById("secondCanvas");
+    mainCanvas.getContext("2d").clearRect(30, 50, 40, 40);
+    secondaryCanvas.getContext("2d").clearRect(175, 50, 40, 40);
+  }
