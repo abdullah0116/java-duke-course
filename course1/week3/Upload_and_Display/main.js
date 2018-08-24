@@ -1,11 +1,6 @@
-function textUpload() {
-  var input = document.getElementById("textInput");
-  var inputValue = input.value;
-  
-  if (inputValue.length == 0) {
-      alert("nothing was entered");
-  } else {
-    alert(inputValue);
-  }
-
+function upload() {
+  var canvas = document.getElementById("firstCanvas");
+  var input = document.getElementById("input");
+  var image = new SimpleImage(input);
+  image.drawTo(canvas);
 }
