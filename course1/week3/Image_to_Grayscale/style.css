@@ -16,6 +16,8 @@ input {
 canvas {
   width: 200px;
   border: 1px black solid;
-  display: block;
-  margin: 0px auto;
+}
+
+#canvasDiv {
+  text-align: center;
 }

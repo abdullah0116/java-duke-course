@@ -1,5 +1,6 @@
 // global image variable
 var image;
+var grayScaleImg;
 
 function upload() {
   var canvas = document.getElementById("firstCanvas");
@@ -15,6 +16,6 @@ function makeGray() {
     pixel.setGreen(average);
     pixel.setBlue(average);
   }
-  var canvas = document.getElementById("firstCanvas");
+  var canvas = document.getElementById("secondCanvas");
   image.drawTo(canvas);
 }
