@@ -10,10 +10,12 @@
 
   </head>
   <body>
+    
     <h1>Green Screen</h1>
-
-      <canvas id="leftCanvas"></canvas>
-      <canvas id="rightCanvas"></canvas>
+      <div id="allCanvases">
+        <canvas id="leftCanvas"></canvas>
+        <canvas id="rightCanvas"></canvas>
+      </div>
 
     <p>Main Image:</p>
     <input type="file" multiple="false" accept="image/*" id="fg" onchange="loadForegroundImage()">
