@@ -17,3 +17,11 @@ canvas {
   width: 200px;
   border: 1px black solid;
 }
+
+#canvasDiv {
+  text-align: center;
+}
+
+.centerText {
+  text-align: center;
+}
