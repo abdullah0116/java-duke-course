@@ -15,14 +15,14 @@ function upload() {
 }
 
 function makeGray() {
-  for (var pixel of gray.values()) {
-    var average = (pixel.getRed(), pixel.getGreen(), pixel.getBlue()) / 3;
-    pixel.setRed(average);
-    pixel.setGreen(average);
-    pixel.setBlue(average);
-  }
-  var canvas = document.getElementById("canvas");;
-  gray.drawTo(canvas);
+    for (var pixel of gray.values()) {
+      var average = (pixel.getRed(), pixel.getGreen(), pixel.getBlue()) / 3;
+        pixel.setRed(average);
+        pixel.setGreen(average);
+        pixel.setBlue(average);
+    }
+    var canvas = document.getElementById("canvas");
+    gray.drawTo(canvas);
 }
 
 function makeRed() {
@@ -39,4 +39,9 @@ function makeBlue() {
   }
   var canvas = document.getElementById("canvas");
   blue.drawTo(canvas);
+}
+
+function removeFilters() {
+  var canvas = document.getElementById("canvas");
+  image.drawTo(canvas);
 }
