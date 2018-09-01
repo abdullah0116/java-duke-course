@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Challenge</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js" charset="utf-8"></script>
+    <script src="main.js" charset="utf-8"></script>
+  </head>
+  <body>
+    <h1>Challenge</h1>
+    <div class="canvasDiv">
+      <canvas id="leftCanvas"></canvas>
+      <canvas id="rightCanvas"></canvas>
+    </div>
+    <input type="file" accept="image/*" multiple="false" id="uploadImage" onchange="upload()">
+    <div class="centerText">
+      <p>Filters:</p>
+      <input type="button" value="Rainbow" onclick="makeRainbow()">
+    </div>
+  </body>
+</html>
