@@ -11,6 +11,7 @@ public class PerimeterRunner {
             // update totalPerim to be totalPerim + (plus) currDist 
             // update prevPT to be currPT
         // totalPerim is the answer 
+        return totalPerim;
     }
     
     public void testPerimeter() {
