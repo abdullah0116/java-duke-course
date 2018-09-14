@@ -64,9 +64,11 @@ public class PerimeterAssignmentRunner {
         
         double length = getPerimeter(s);
         int numPTS = getNumPoints(s);
+        double averageLength = getAverageLength(s);
         
         System.out.println("Your Perimeter: " + length);
         System.out.println("Number of points: " + numPTS);
+        System.out.println("The average length is: " + averageLength);
     }
     
     public void testPerimeterMultipleFiles() {
