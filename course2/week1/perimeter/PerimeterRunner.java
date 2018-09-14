@@ -7,10 +7,15 @@ public class PerimeterRunner {
         // start with prevPT = the last point
         Point prevPT = s.getLastPoint();
         // for each point currPT in the shape 
-            // find the distance from prevPT pt to currPT set it to currDist 
+        for(Point currPT: s.getPoints()) {
+            // find the distance from prevPT pt to currPT set it to currDist
+            double currDist = prevPT.distance(currPT);
             // update totalPerim to be totalPerim + (plus) currDist 
+            totalPerim = totalPerim + currDist;
             // update prevPT to be currPT
-        // totalPerim is the answer 
+            prevPT = currPT;
+        }
+        // totalPerim is the answer that needs to be returned
         return totalPerim;
     }
     
@@ -18,7 +23,7 @@ public class PerimeterRunner {
         FileResource fr = new FileResource();
         Shape s = new Shape(fr);
         double length = getPerimeter(s);
-        System.out.println("Perimter =" + length);
+        System.out.println("Your Perimter is: " + length);
     }
     
     public static void main(String[] args) {
