@@ -15,11 +15,12 @@ public class FindAGene {
         }    
         // end codon 
         int endCodon = dna.indexOf("TAA", startCodon+3);
+        String result = dna.substring(startCodon, endCodon+3);
         if (endCodon == -1) {
             System.out.println("There is no end the DNA strand");
             return "";
         }
-        String result = dna.substring(startCodon, endCodon+3);
+   
         return result;
     }
     
