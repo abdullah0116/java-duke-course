@@ -46,9 +46,9 @@ public class Part2 {
         //System.out.println("The Raw Gene is: " + rawGene);
         
         //caps test 
-        System.out.println("Upper Caps test:"); 
+        System.out.println("Upper Caps test"); 
         System.out.println("     The DNA is: " + findSimpleGene("SSSSSSSSAATGGKGIKCTAAJKFDSDLKJSD", 0, 100)); 
-        System.out.println("Lower Caps test:");
+        System.out.println("Lower Caps test");
         System.out.println("     The DNA is: " + findSimpleGene("jkldjslkdatggkgikctaajkdjsdlkjsd", 0, 100)); 
                                                                  
     }                                           
