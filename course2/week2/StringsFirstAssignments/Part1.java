@@ -34,9 +34,15 @@ public class Part1 {
     }
     
     public void SimpleGeneTester() {
+        // tester method
         String rawGene = "JKLDJSLKDATGGKGIKCTAAJKDJSDLKJSD";
         System.out.println("The Raw Gene is: " + rawGene);
         String DNA = findSimpleGene(rawGene);
         System.out.println("The DNA is: " + DNA); 
+        
+        rawGene = "DDATGLDKDATGFKDLFJTAA";
+        System.out.println("The Raw Gene is: " + rawGene);
+        DNA = findSimpleGene(rawGene);
+        System.out.println("The DNA is: " + DNA);
     }
 }
