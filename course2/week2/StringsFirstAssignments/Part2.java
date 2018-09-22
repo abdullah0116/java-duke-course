@@ -48,6 +48,7 @@ public class Part2 {
         //caps test 
         System.out.println("Upper Caps test"); 
         System.out.println("     The DNA is: " + findSimpleGene("SSSSSSSSAATGGKGIKCTAAJKFDSDLKJSD", 0, 100)); 
+        System.out.println("     The DNA is: " + findSimpleGene("AAATGCCCTAACTAGATTAAGAAACC", 0, 100)); 
         System.out.println("Lower Caps test");
         System.out.println("     The DNA is: " + findSimpleGene("jkldjslkdatggkgikctaajkdjsdlkjsd", 0, 100)); 
                                                                  
