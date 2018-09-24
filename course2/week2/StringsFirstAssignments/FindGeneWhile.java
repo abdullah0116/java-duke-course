@@ -1,9 +1,10 @@
 
 /**
- * Write a description of FindGeneWhile here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * This program finds Genes in DNAs.
+ * 
+ * @author (Abdullah Kareem) 
+ * @version (1.2)
  */
 public class FindGeneWhile {
     public String findGene(String dna) {

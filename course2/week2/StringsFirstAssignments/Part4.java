@@ -8,7 +8,7 @@ import edu.duke.URLResource;
 public class Part4 {    
     public String urlCrawler(String url) {
         URLResource file = new URLResource(url);
-        for (String item : file.words()){
+        for (String item : file.lines()){
             String itemLower = item.toLowerCase();
             int pos = itemLower.indexOf("youtube.com");
             if (pos != -1) {

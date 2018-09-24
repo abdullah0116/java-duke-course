@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=FindGeneWhile
-comment0.text=\n\ Write\ a\ description\ of\ FindGeneWhile\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\n\ \n\ This\ program\ finds\ Genes\ in\ DNAs.\n\ \n\ @author\ (Abdullah\ Kareem)\ \n\ @version\ (1.2)\n
 comment1.params=dna
 comment1.target=java.lang.String\ findGene(java.lang.String)
 comment2.params=
