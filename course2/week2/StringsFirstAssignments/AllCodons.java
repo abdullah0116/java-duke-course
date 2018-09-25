@@ -24,12 +24,12 @@ public class AllCodons {
             }
         }          
         // your answer is dnaSTR.length()    
-        return dnaString.length();
+        return -1;
     }
     
-    public String findGene(String dna) {
+    public String findGene(String dna, int where) {
         // find first occurrence of "ATG" call its index startIndex 
-        int startIndex = dna.indexOf("ATG");
+        int startIndex = dna.indexOf("ATG", where);
         // if startIndex is -1 then your answer is the empty string 
         if(startIndex == -1){
             return "";
@@ -41,14 +41,57 @@ public class AllCodons {
         // findStopCodon(dnaString, startIndex, "TGA") and call the result tgaIndex
         int tgaIndex = findStopCodon(dna, startIndex, "TGA");
         // take the smallest of taaIndex, tgaIndex, and tagIndex: call it minIndex
-        int firstMin = Math.min(taaIndex, tagIndex);
-        int minIndex = Math.min(firstMin, tgaIndex);
+        //int minIndex = Math.min(firstMin, tgaIndex);
+        int minIndex = 0;
         
-        if(minIndex == dna.length()){
+        if (taaIndex == -1 || (tgaIndex!= -1 && tgaIndex < taaIndex)) {
+            minIndex = tgaIndex;
+        }
+        else {
+            minIndex = taaIndex;
+        }
+        
+        if (minIndex == -1 || (tagIndex != -1 && tagIndex < minIndex)) {
+            minIndex = tagIndex;
+        }
+        
+        if(minIndex == -1){
             return "";
         }
         // your answer is the text from startindex to minindex + 3
         return dna.substring(startIndex, minIndex + 3);
+    }
+    
+    public String printAllGenes(String dna){
+        // set startIndex at 0
+        int startIndex = 0;
+        // repeat the following steps
+        while(true) {
+            // find the next gene after startIndex 
+            String currGene = findGene(dna, startIndex);
+            // if no gene was found leave the loop
+            if(currGene.isEmpty()){
+                break;
+            }
+            // print that gene out
+            System.out.println("Your Gene is: " + currGene);
+            // set startIndex to just past the end of gene
+            startIndex = dna.indexOf(currGene, startIndex) + 
+                                     currGene.length();
+            
+        }
+        return "";
+    }
+    //                        *** TESTER METHODS ***
+    public void testPrintAllGenes() {
+        System.out.println("First DNA:");
+        String dna = "ATGATCATAAGAAGATAATAGAGGGCCATGTAA";
+        System.out.println("DNA: " + dna);
+        System.out.println(printAllGenes(dna));
+        System.out.println("Second DNA:");
+        dna = "ATGATCTAATTTATGCTGCAACGGTGAAGA";
+        System.out.println("DNA: " + dna);
+        System.out.println(printAllGenes(dna));
     }
     
     public void testFindGene() {
@@ -76,13 +119,13 @@ public class AllCodons {
         
         dex = findStopCodon(dna, 1, "TAA");
         
-        if (dex != 26){
+        if (dex != -1){
             System.out.println("error on line 26!");
         }
         
         dex = findStopCodon(dna, 0, "TAG");
         
-        if (dex != 26){
+        if (dex != -1){
             System.out.println("error on line 26!");
         }
         
