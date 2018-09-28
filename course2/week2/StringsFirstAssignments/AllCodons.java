@@ -85,19 +85,21 @@ public class AllCodons {
     //                        *** TESTER METHODS ***
     public void testPrintAllGenes() {
         System.out.println("First DNA:");
-        String dna = "ATGATCATAAGAAGATAATAGAGGGCCATGTAA";
+        String dna = "AATGCTAACTAGCTGACTAAT";
         System.out.println("DNA: " + dna);
         System.out.println(printAllGenes(dna));
+        
+        
         System.out.println("Second DNA:");
-        dna = "ATGATCTAATTTATGCTGCAACGGTGAAGA";
+        dna = "AATGCTAACTAGCTGACTAAT";
         System.out.println("DNA: " + dna);
         System.out.println(printAllGenes(dna));
     }
     
     public void testFindGene() {
-        String dnaTAA = "xxxyyyzzzTAAxxxyyyzzzTAAxx";
-        String dnaTAG = "xxxyyyzzzTAGxxxyyyzzzTAGxx";
-        String dnaTGA = "xxxyyyzzzTGAxxxyyyzzzTGAxx";
+        String dnaTAA = "AATGCTAACTAGCTGACTAAT";
+        String dnaTAG = "AATGCTAACTAGCTGACTAAT";
+        String dnaTGA = "AATGCTAACTAGCTGACTAAT";
         
         System.out.println("Gene of TAA: " + findStopCodon(dnaTAA, 0, "TAA"));
         System.out.println("Gene of TAG: " + findStopCodon(dnaTAG, 0, "TAG"));
