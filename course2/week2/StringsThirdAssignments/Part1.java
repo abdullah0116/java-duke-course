@@ -81,6 +81,37 @@ public class Part1 {
         return geneList;
     }
     
+    public double cgRatio(String dna){
+        int cCounter = 0;
+        int gCounter = 0;
+        int index    = 0;
+        int start = 0; 
+        
+        while (true) {
+            index = dna.indexOf("C", start);
+            if(index == -1) {
+                break;
+            }
+            cCounter++;
+            start = index + 1;
+        }
+        
+        start = 0; 
+        
+        while (true) {
+            index = dna.indexOf("G", start);
+            if (index == -1) {
+                break;
+            }
+            gCounter++;
+            start = index+1;
+        }
+        
+        double results = ((double) (cCounter + gCounter)) / dna.length();
+        System.out.print("The Ratio is: ");
+        return results;
+    }
+    
     public String printAllGenes(String dna){
         // set startIndex at 0
         int startIndex = 0;
@@ -101,6 +132,7 @@ public class Part1 {
         }
         return "";
     }
+    
     //                        *** TESTER METHODS ***
     public void testPrintAllGenes() {
         System.out.println("First DNA:");
@@ -153,13 +185,17 @@ public class Part1 {
         System.out.println("All tests are complete.");
     }
     
-        public void testOn(String dna){
+    public void testOn(String dna){
         System.out.println("Testing getAllGenes: " + dna);
         StorageResource genes = getAllGenes(dna);
         
         for(String s : genes.data()){
         
         }
+    }
+    
+    public void testCGRatio() {
+        System.out.println(cgRatio("ATGCCATAG"));
     }
 }
 
