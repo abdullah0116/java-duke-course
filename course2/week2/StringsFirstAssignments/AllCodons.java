@@ -1,4 +1,4 @@
-
+import edu.duke.*;
 /**
  * Write a description of AllCodons here.
  * 
@@ -60,6 +60,39 @@ public class AllCodons {
         }
         // your answer is the text from startindex to minindex + 3
         return dna.substring(startIndex, minIndex + 3);
+    }
+
+    public StorageResource getAllGenes(String dna){
+        StorageResource geneList = new StorageResource();
+        // set startIndex at 0
+        int startIndex = 0;
+        // repeat the following steps
+        while(true) {
+            // find the next gene after startIndex 
+            String currGene = findGene(dna, startIndex);
+            // if no gene was found leave the loop
+            if(currGene.isEmpty()){
+                break;
+            }
+            
+            geneList.add(currGene);
+            // print that gene out
+            System.out.println("Your Gene is: " + currGene);
+            // set startIndex to just past the end of gene
+            startIndex = dna.indexOf(currGene, startIndex) + 
+                                     currGene.length();
+            
+        }
+        return geneList;
+    }
+    
+    public void testOn(String dna){
+        System.out.println("Testing getAllGenes: " + dna);
+        StorageResource genes = getAllGenes(dna);
+        
+        for(String s : genes.data()){
+        
+        }
     }
     
     public String printAllGenes(String dna){
