@@ -32,12 +32,26 @@ public class WhichCountriesExport {
         return "";
     }
     
+    public void listExportersTwoProducts(CSVParser parser, String exportItem1, String exportItem2){
+        for(CSVRecord record : parser){
+            String exports = record.get("Exports");
+            if (exports.contains(exportItem1) && exports.contains(exportItem2)) {
+                String country = record.get("Country");
+                System.out.println("This country has both" + exportItem1 
+                                                           + " and "
+                                                           + exportItem2 
+                                                           + ": " + country);
+            }
+        }
+    }
     //                      *** TEST METHODS ***
     public void tester() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
-        
         countryInfo(parser, "Malawi");
+        
+        parser = fr.getCSVParser();
+        listExportersTwoProducts(parser, "gold", "diamonds");
     }
     
     public void coffeeExporters() {
