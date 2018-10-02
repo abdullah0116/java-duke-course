@@ -16,6 +16,30 @@ public class WhichCountriesExport {
         }
     }
     
+    public String countryInfo(CSVParser parser, String country) {
+        for(CSVRecord record : parser){
+            String countrySrc = record.get("Country");
+            
+            if (countrySrc.contains(country)) {
+                String exports = record.get("Exports");
+                String value = record.get("Value (dollars)");
+                System.out.println(country + " : " +  exports +  " : "  + value);
+            } else {
+                System.out.println("NOT FOUND");
+            }
+          
+        }
+        return "";
+    }
+    
+    //                      *** TEST METHODS ***
+    public void tester() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        
+        countryInfo(parser, "Malawi");
+    }
+    
     public void coffeeExporters() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
