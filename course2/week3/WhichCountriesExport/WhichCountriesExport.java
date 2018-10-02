@@ -37,13 +37,29 @@ public class WhichCountriesExport {
             String exports = record.get("Exports");
             if (exports.contains(exportItem1) && exports.contains(exportItem2)) {
                 String country = record.get("Country");
-                System.out.println("This country has both" + exportItem1 
+                System.out.println("This country has both " + exportItem1 
                                                            + " and "
                                                            + exportItem2 
                                                            + ": " + country);
             }
         }
     }
+    
+    public String numberOfExports(CSVParser parser, String exportItem){
+        int counter = 0;
+        for (CSVRecord record : parser) {
+            String export = record.get("Exports");
+            if (export.contains(exportItem)){
+                counter++;
+            }
+        }
+        
+        System.out.println("Number of exports of item " + exportItem
+                                                        + ": " 
+                                                        + counter);
+        return "";
+    }
+    
     //                      *** TEST METHODS ***
     public void tester() {
         FileResource fr = new FileResource();
@@ -52,6 +68,9 @@ public class WhichCountriesExport {
         
         parser = fr.getCSVParser();
         listExportersTwoProducts(parser, "gold", "diamonds");
+        
+        parser = fr.getCSVParser();
+        numberOfExports(parser, "coffee");
     }
     
     public void coffeeExporters() {
