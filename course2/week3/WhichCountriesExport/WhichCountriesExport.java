@@ -60,17 +60,34 @@ public class WhichCountriesExport {
         return "";
     }
     
+    
+    public void bigExporters(CSVParser parser, String amount) {
+        for (CSVRecord record : parser) {
+            String value = record.get("Value (dollars)");
+            int valueLen = value.length();
+            int amountLen = amount.length();
+            
+            if (valueLen >= amountLen) {
+                String country = record.get("Country");
+                System.out.println(country + " " + value);
+            }
+        }
+    }
     //                      *** TEST METHODS ***
     public void tester() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
-        countryInfo(parser, "Malawi");
-        
+        System.out.println("****************************");
+        countryInfo(parser, "Nauru");
+        System.out.println("****************************");
         parser = fr.getCSVParser();
         listExportersTwoProducts(parser, "gold", "diamonds");
         
         parser = fr.getCSVParser();
-        numberOfExports(parser, "coffee");
+        numberOfExports(parser, "sugar");
+        
+        parser = fr.getCSVParser();
+        bigExporters(parser, "$999,999,999");
     }
     
     public void coffeeExporters() {
