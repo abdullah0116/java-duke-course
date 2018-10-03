@@ -38,15 +38,26 @@ public class CSVMax {
            
             if (largestSoFar == null) {
                 largestSoFar = current;
+            } else {
+                double currentTemp = Double.parseDouble(current.get("TemperatureF"));
+                double largestTemp = Double.parseDouble(largestSoFar.get("TemperatureF"));
+                if (currentTemp > largestTemp) {
+                    largestSoFar = current;
+                }
             }
-            
-            
         }
         // the largestSoFar is the answer 
         return largestSoFar;
     }
-    
+   
     //                      *** TESTER METHODS ***
+    public void testHottestManyDays() {
+        CSVRecord largest = hottestManyDays();
+        System.out.println("Hottest Temperature was " + largest.get("TemperatureF")
+                                                      + " F at " 
+                                                      + largest.get("DateUTC"));
+    }
+    
     public void testHottestInDay() {
         FileResource fr = new FileResource("data/2015/weather-2015-01-02.csv");
         CSVRecord largest = hottestHourInFile(fr.getCSVParser());
