@@ -27,8 +27,28 @@ public class CSVMax {
         return largestSoFar;
     }
     
+    public CSVRecord hottestManyDays() {
+        DirectoryResource dr = new DirectoryResource();
+        CSVRecord largestSoFar = null;
+        // iterate over files
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            // use method to get largest file
+            CSVRecord current = hottestHourInFile((fr.getCSVParser()));
+           
+            if (largestSoFar == null) {
+                largestSoFar = current;
+            }
+            
+            
+        }
+        // the largestSoFar is the answer 
+        return largestSoFar;
+    }
+    
+    //                      *** TESTER METHODS ***
     public void testHottestInDay() {
-        FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
+        FileResource fr = new FileResource("data/2015/weather-2015-01-02.csv");
         CSVRecord largest = hottestHourInFile(fr.getCSVParser());
         System.out.println("Hottest temperature was " + largest.get("TemperatureF")
                                                       + "F at " 
