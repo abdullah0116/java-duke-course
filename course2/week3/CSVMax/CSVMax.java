@@ -8,20 +8,7 @@ public class CSVMax {
         CSVRecord largestSoFar = null;
         //For each row (currentRow) in the CSV File
         for (CSVRecord currentRow : parser) { 
-            //If largestSoFar is nothing 
-            if(largestSoFar == null ){
-                //If so update largestSoFar to currentRow 
-                largestSoFar = currentRow;
-            } else { //Otherwise 
-                //Check if currentRow's tempture > largestSoFar
-                
-                String tempLarStri = currentRow.get("TemperatureF");
-                double tempRow = Double.parseDouble(currentRow.get("TemperatureF"));
-                double tempLar = Double.parseDouble(largestSoFar.get("TemperatureF"));
-                if (tempRow > tempLar) {
-                    largestSoFar = currentRow; 
-                }
-            }
+            largestSoFar = getLargestOfTwo(currentRow, largestSoFar);
         }
         //The largestSoFar is the answer
         return largestSoFar;
@@ -34,22 +21,30 @@ public class CSVMax {
         for (File f : dr.selectedFiles()) {
             FileResource fr = new FileResource(f);
             // use method to get largest file
-            CSVRecord current = hottestHourInFile((fr.getCSVParser()));
-           
-            if (largestSoFar == null) {
-                largestSoFar = current;
-            } else {
-                double currentTemp = Double.parseDouble(current.get("TemperatureF"));
-                double largestTemp = Double.parseDouble(largestSoFar.get("TemperatureF"));
-                if (currentTemp > largestTemp) {
-                    largestSoFar = current;
-                }
-            }
+            CSVRecord currentRow = hottestHourInFile((fr.getCSVParser()));
+            largestSoFar = getLargestOfTwo(currentRow, largestSoFar);
         }
         // the largestSoFar is the answer 
         return largestSoFar;
     }
    
+    public CSVRecord getLargestOfTwo(CSVRecord currentRow, CSVRecord largestSoFar) {
+        //If largestSoFar is nothing 
+        if(largestSoFar == null ){
+            //If so update largestSoFar to currentRow 
+            largestSoFar = currentRow;
+        } else { //Otherwise 
+            //Check if currentRow's tempture > largestSoFar
+                
+            String tempLarStri = currentRow.get("TemperatureF");
+            double tempRow = Double.parseDouble(currentRow.get("TemperatureF"));
+            double tempLar = Double.parseDouble(largestSoFar.get("TemperatureF"));
+            if (tempRow > tempLar) {
+                largestSoFar = currentRow; 
+            }
+        }
+        return largestSoFar;
+    }
     //                      *** TESTER METHODS ***
     public void testHottestManyDays() {
         CSVRecord largest = hottestManyDays();
