@@ -14,16 +14,24 @@ public class CSVMax {
                 largestSoFar = currentRow;
             } else { //Otherwise 
                 //Check if currentRow's tempture > largestSoFar
-                String tempRowStri = currentRow.get("TemperatureF");
+                
                 String tempLarStri = currentRow.get("TemperatureF");
-                double tempRowInt = Double.parseDouble(tempRowStri);
-                double tempLarInt = Double.parseDouble(tempLarStri);
-                if (tempRowInt > tempLarInt) {
+                double tempRow = Double.parseDouble(currentRow.get("TemperatureF"));
+                double tempLar = Double.parseDouble(largestSoFar.get("TemperatureF"));
+                if (tempRow > tempLar) {
                     largestSoFar = currentRow; 
                 }
             }
         }
         //The largestSoFar is the answer
         return largestSoFar;
+    }
+    
+    public void testHottestInDay() {
+        FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
+        CSVRecord largest = hottestHourInFile(fr.getCSVParser());
+        System.out.println("Hottest temperature was " + largest.get("TemperatureF")
+                                                      + "F at " 
+                                                      + largest.get("TimeEST"));
     }
 }
