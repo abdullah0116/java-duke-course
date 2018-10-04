@@ -155,7 +155,30 @@ public class CSVMax {
         return lowestSoFar;
     }
     
+    public double averageTemperatureInFile(CSVParser parser) {
+        double numberSet = 0.0;
+        double average = 0;
+        int counter = 0;
+        
+        
+        for(CSVRecord currentRow : parser){
+            double currentTemp = Double.parseDouble(currentRow.get("TemperatureF"));
+            numberSet += currentTemp;
+            counter++;
+        }
+        
+        average = numberSet / counter;
+        return average;
+    } 
+    
     //                      *** TESTER METHODS ***
+    public void testAverageTemperatureInFile() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        double average = averageTemperatureInFile(parser);
+        System.out.println("Average temperature in file is " + average);
+    }
+    
     public void testLowestHumidityInManyFiles() {
         CSVRecord record = lowestHumidityInManyFiles();
         System.out.println("Lowest Humidity was " + record.get("Humidity")
