@@ -111,7 +111,41 @@ public class CSVMax {
         return lowestFileName;
     }
     
+    public CSVRecord lowestHumidityInFile(CSVParser parser) {
+        //start with lowestSoFar as nothing
+        CSVRecord lowestSoFar = null;
+        //For each row (currentRow) in the CSV File
+        for (CSVRecord currentRow : parser) { 
+            //If largestSoFar is nothing 
+            if(lowestSoFar == null ){
+                //If so update largestSoFar to currentRow 
+                lowestSoFar = currentRow;
+            } else { //Otherwise
+                String humidityLowStri = currentRow.get("Humidity");
+                double current = Double.parseDouble(currentRow.get("Humidity"));
+                double lowestSoFarDob = Double.parseDouble(lowestSoFar.get("Humidity"));
+                
+                if (!humidityLowStri.equals("N/A")) {
+                    if (current < lowestSoFarDob) {
+                        lowestSoFar = currentRow; 
+                    }
+                }
+            }
+        }
+        //The largestSoFar is the answer
+        return lowestSoFar;
+    }
+    
     //                      *** TESTER METHODS ***
+    public void testLowestHumidityInFile() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        CSVRecord csv = lowestHumidityInFile(parser);
+        System.out.println("Lowest Humidity was " + csv.get("Humidity") 
+                                                  + " at "
+                                                  + csv.get("DateUTC"));
+    }
+    
     public void testFileWithColdestTemperature() {
         // gets and returns the lowest temp file
         //         VVVV            VVVV
