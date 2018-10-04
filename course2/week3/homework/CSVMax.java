@@ -45,7 +45,45 @@ public class CSVMax {
         }
         return largestSoFar;
     }
+    
+    public CSVRecord getLowestOfTwo(CSVRecord currentRow, CSVRecord lowestSoFar){
+        //If largestSoFar is nothing 
+            if(lowestSoFar == null ){
+                //If so update largestSoFar to currentRow 
+                lowestSoFar = currentRow;
+            } else { //Otherwise 
+                //Check if currentRow's tempture < largestSoFar
+                
+                String tempLarStri = currentRow.get("TemperatureF");
+                double tempRow = Double.parseDouble(currentRow.get("TemperatureF"));
+                double tempLar = Double.parseDouble(lowestSoFar.get("TemperatureF"));
+                if (tempRow < tempLar) {
+                    lowestSoFar = currentRow; 
+                }
+            }
+        return lowestSoFar;
+    }
+    
+    public CSVRecord coldestHourInFile(CSVParser parser){
+        //start with lowestSoFar as nothing
+        CSVRecord lowestSoFar = null;
+        //For each row (currentRow) in the CSV File
+        for (CSVRecord currentRow : parser) { 
+            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
+        }
+        //The largestSoFar is the answer
+        return lowestSoFar;
+    }
+    
     //                      *** TESTER METHODS ***
+    public void testLowestInDay() {
+        FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
+        CSVRecord lowest = coldestHourInFile(fr.getCSVParser());
+        System.out.println("Lowest temperature was " + lowest.get("TemperatureF")
+                                                      + "F at " 
+                                                      + lowest.get("TimeEST"));
+    }
+    
     public void testHottestManyDays() {
         CSVRecord largest = hottestManyDays();
         System.out.println("Hottest Temperature was " + largest.get("TemperatureF")
