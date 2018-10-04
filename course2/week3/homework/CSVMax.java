@@ -171,7 +171,33 @@ public class CSVMax {
         return average;
     } 
     
+    public double averageTemperatureWithHighHumidityInFile(CSVParser parser, int value) {
+        double numberSet = 0.0;
+        double average = 0.0;
+        int counter = 0;
+        double humidity = 0.0;   
+        for (CSVRecord currentRow : parser){
+            humidity = Double.parseDouble(currentRow.get("Humidity"));
+            if (humidity >= value) {
+                double temperature = Double.parseDouble(currentRow.get("TemperatureF"));
+                numberSet += temperature;
+                counter++;
+            } else {
+                System.out.println("No temperatures with that humidity");
+            }
+        }
+        
+        average = numberSet / counter; 
+        return average;
+    }
     //                      *** TESTER METHODS ***
+    public void testAverageTemperatureWithHighHumidityInFile() {
+        FileResource fr = new FileResource();
+        CSVParser parser = fr.getCSVParser();
+        double average = averageTemperatureWithHighHumidityInFile(parser, 80);
+        System.out.println("Average Temp when high Humidity is " + average);
+    }
+    
     public void testAverageTemperatureInFile() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
