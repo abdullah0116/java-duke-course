@@ -57,8 +57,12 @@ public class CSVMax {
                 String tempLarStri = currentRow.get("TemperatureF");
                 double tempRow = Double.parseDouble(currentRow.get("TemperatureF"));
                 double tempLar = Double.parseDouble(lowestSoFar.get("TemperatureF"));
-                if (tempRow < tempLar) {
-                    lowestSoFar = currentRow; 
+                
+               
+                if (tempRow > -9999) {
+                    if (tempRow < tempLar) {
+                        lowestSoFar = currentRow; 
+                    }
                 }
             }
         return lowestSoFar;
