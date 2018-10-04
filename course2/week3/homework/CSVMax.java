@@ -79,7 +79,27 @@ public class CSVMax {
         return lowestSoFar;
     }
     
+    public CSVRecord coldestManyDays() {
+        DirectoryResource dr = new DirectoryResource();
+        CSVRecord lowestSoFar = null;
+        // iterate over files
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            // use method to get largest file
+            CSVRecord currentRow = coldestHourInFile((fr.getCSVParser()));
+            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
+        }
+        // the largestSoFar is the answer l
+        return lowestSoFar;
+    }
+    
     //                      *** TESTER METHODS ***
+    public void testColdestManyDays() {
+        CSVRecord coldest = coldestManyDays();
+        System.out.println("Coldest temperature on that day was : " 
+                           + coldest.get("TemperatureF"));
+    }
+    
     public void testLowestInDay() {
         FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
         CSVRecord lowest = coldestHourInFile(fr.getCSVParser());
