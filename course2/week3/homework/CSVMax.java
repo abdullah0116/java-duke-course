@@ -111,32 +111,58 @@ public class CSVMax {
         return lowestFileName;
     }
     
+    public CSVRecord getTwoHumidityFiles(CSVRecord currentRow, CSVRecord lowestSoFar) {
+        //If largestSoFar is nothing 
+        if(lowestSoFar == null ){
+            //If so update largestSoFar to currentRow 
+            lowestSoFar = currentRow;
+        } else { //Otherwise
+            String humidityLowStri = currentRow.get("Humidity");
+            double current = Double.parseDouble(currentRow.get("Humidity"));
+            double lowestSoFarDob = Double.parseDouble(lowestSoFar.get("Humidity"));
+                
+            if (!humidityLowStri.equals("N/A")) {
+                if (current < lowestSoFarDob) {
+                    lowestSoFar = currentRow; 
+                }
+            }
+        }
+        return lowestSoFar; 
+    }
+    
     public CSVRecord lowestHumidityInFile(CSVParser parser) {
         //start with lowestSoFar as nothing
         CSVRecord lowestSoFar = null;
         //For each row (currentRow) in the CSV File
         for (CSVRecord currentRow : parser) { 
-            //If largestSoFar is nothing 
-            if(lowestSoFar == null ){
-                //If so update largestSoFar to currentRow 
-                lowestSoFar = currentRow;
-            } else { //Otherwise
-                String humidityLowStri = currentRow.get("Humidity");
-                double current = Double.parseDouble(currentRow.get("Humidity"));
-                double lowestSoFarDob = Double.parseDouble(lowestSoFar.get("Humidity"));
-                
-                if (!humidityLowStri.equals("N/A")) {
-                    if (current < lowestSoFarDob) {
-                        lowestSoFar = currentRow; 
-                    }
-                }
-            }
+            lowestSoFar = getTwoHumidityFiles(currentRow, lowestSoFar);
         }
         //The largestSoFar is the answer
         return lowestSoFar;
     }
     
+    public CSVRecord lowestHumidityInManyFiles() {
+        DirectoryResource dr = new DirectoryResource();
+        CSVRecord lowestSoFar = null;
+        // iterate over files
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            // use method to get largest file
+            CSVRecord currentRow = lowestHumidityInFile((fr.getCSVParser()));
+            lowestSoFar = getTwoHumidityFiles(currentRow, lowestSoFar);
+        }
+        // the largestSoFar is the answer l
+        return lowestSoFar;
+    }
+    
     //                      *** TESTER METHODS ***
+    public void testLowestHumidityInManyFiles() {
+        CSVRecord record = lowestHumidityInManyFiles();
+        System.out.println("Lowest Humidity was " + record.get("Humidity")
+                                                  + " at " 
+                                                  + record.get("DateUTC"));
+    }
+    
     public void testLowestHumidityInFile() {
         FileResource fr = new FileResource();
         CSVParser parser = fr.getCSVParser();
