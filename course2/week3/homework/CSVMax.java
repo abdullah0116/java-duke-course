@@ -46,7 +46,32 @@ public class CSVMax {
         return largestSoFar;
     }
     
-    public CSVRecord getLowestOfTwo(CSVRecord currentRow, CSVRecord lowestSoFar){
+    public CSVRecord coldestManyDays() {
+        DirectoryResource dr = new DirectoryResource();
+        CSVRecord lowestSoFar = null;
+        // iterate over files
+        for (File f : dr.selectedFiles()) {
+            FileResource fr = new FileResource(f);
+            // use method to get largest file
+            CSVRecord currentRow = coldestHourInFile((fr.getCSVParser()));
+            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
+        }
+        // the largestSoFar is the answer l
+        return lowestSoFar;
+    }
+    
+    public CSVRecord coldestHourInFile(CSVParser parser){
+        //start with lowestSoFar as nothing
+        CSVRecord lowestSoFar = null;
+        //For each row (currentRow) in the CSV File
+        for (CSVRecord currentRow : parser) { 
+            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
+        }
+        //The largestSoFar is the answer
+        return lowestSoFar;
+    }    
+    
+     public CSVRecord getLowestOfTwo(CSVRecord currentRow, CSVRecord lowestSoFar){
         //If largestSoFar is nothing 
             if(lowestSoFar == null ){
                 //If so update largestSoFar to currentRow 
@@ -68,44 +93,42 @@ public class CSVMax {
         return lowestSoFar;
     }
     
-    public CSVRecord coldestHourInFile(CSVParser parser){
-        //start with lowestSoFar as nothing
-        CSVRecord lowestSoFar = null;
-        //For each row (currentRow) in the CSV File
-        for (CSVRecord currentRow : parser) { 
-            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
-        }
-        //The largestSoFar is the answer
-        return lowestSoFar;
-    }
-    
-    public CSVRecord coldestManyDays() {
+    public File fileWithColdestTemperature() {
         DirectoryResource dr = new DirectoryResource();
         CSVRecord lowestSoFar = null;
-        // iterate over files
+        File lowestFileName = null; 
+        
         for (File f : dr.selectedFiles()) {
             FileResource fr = new FileResource(f);
-            // use method to get largest file
-            CSVRecord currentRow = coldestHourInFile((fr.getCSVParser()));
-            lowestSoFar = getLowestOfTwo(currentRow, lowestSoFar);
+            CSVRecord current = coldestHourInFile(fr.getCSVParser());
+            lowestSoFar = getLowestOfTwo(current, lowestSoFar);
+            double lowestTemp = Double.parseDouble(lowestSoFar.get("TemperatureF"));
+            
+            if (lowestTemp < 99.9) {
+                lowestFileName = f;
+            }
         }
-        // the largestSoFar is the answer l
-        return lowestSoFar;
+        return lowestFileName;
     }
     
     //                      *** TESTER METHODS ***
-    public void testColdestManyDays() {
-        CSVRecord coldest = coldestManyDays();
-        System.out.println("Coldest temperature on that day was : " 
-                           + coldest.get("TemperatureF"));
-    }
-    
-    public void testLowestInDay() {
-        FileResource fr = new FileResource("data/2015/weather-2015-01-01.csv");
-        CSVRecord lowest = coldestHourInFile(fr.getCSVParser());
-        System.out.println("Lowest temperature was " + lowest.get("TemperatureF")
-                                                      + "F at " 
-                                                      + lowest.get("TimeEST"));
+    public void testFileWithColdestTemperature() {
+        // gets and returns the lowest temp file
+        //         VVVV            VVVV
+        File fileName = fileWithColdestTemperature();
+        System.out.println("Coldest day was in file " + fileName.getName());
+        
+        // setting up the file resource and calling fileName to get the 
+        // the same file 
+        //         VVVV            VVVV
+        FileResource fr = new FileResource(fileName);
+        CSVRecord tempLow = coldestHourInFile(fr.getCSVParser());
+        System.out.println("Coldest temperature on that day was : " + tempLow.get("TemperatureF"));
+        System.out.println("All the Temperatures on the coldest day were:");
+        for (CSVRecord currentRow : fr.getCSVParser()){
+            System.out.println(currentRow.get("DateUTC") + ": " 
+                               + currentRow.get("TemperatureF"));
+        }
     }
     
     public void testHottestManyDays() {
