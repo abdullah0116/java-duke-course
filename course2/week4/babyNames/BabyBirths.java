@@ -20,6 +20,31 @@ public class BabyBirths {
         }
     }
     
+    public void totalBirths (FileResource fr) {
+        int totalBirths  = 0;
+        int totalFemales = 0;
+        int totalMale    = 0;
+        
+        
+        for (CSVRecord record : fr.getCSVParser(false)) {
+            int numBorn = Integer.parseInt(record.get(2));
+            totalBirths += numBorn;
+            
+            if(record.get(1).equals("M")){
+                totalMale += numBorn;
+            } else  {
+                totalFemales += numBorn;
+            }
+        }
+        System.out.println("Total Births: " + totalBirths);
+        System.out.println("Total Female Births: " + totalFemales);
+        System.out.println("Total Male Births: " + totalMale);
+    }
+    
     //                    *** TESTER METHODS *** 
-
+    
+    public void testTotalBirths() {
+        FileResource fr = new FileResource("us_babynames/example-small.csv");
+        totalBirths(fr);
+    }
 }
