@@ -1,5 +1,6 @@
 import edu.duke.*;
 import org.apache.commons.csv.*;
+import java.io.File;
 
 public class BabyBirths {
     public void printName(){
@@ -118,7 +119,104 @@ public class BabyBirths {
                                               + newYear + ".");
     }
     
-    //                    *** TESTER METHODS *** 
+    public static int yearOfHighestRank(String name, String gender) {
+
+	int rank = 1000000;
+	int yearHigh = 0;
+		
+	DirectoryResource dr = new DirectoryResource();
+		
+	for(File fi : dr.selectedFiles()){
+	
+	    String fileName = fi.getName();
+			
+	    int year = Integer.parseInt(fileName.replaceAll("[\\D]", ""));
+			
+
+	    FileResource fr = new FileResource(fi);
+	    int currRank = -1;
+	    int pivot = 0;
+	    for(CSVRecord record : fr.getCSVParser(false)){
+	        
+	        if(record.get(1).equals(gender)) {
+					
+	            pivot++;
+								
+	            if(record.get(0).equals(name)) {
+	                currRank = pivot;
+	                break;
+	            }
+					
+	        }
+				
+	    }
+		
+		if(currRank != -1 && currRank < rank){
+		    rank = currRank;
+		    yearHigh = year;
+		}
+		
+	}
+		
+	return yearHigh;
+    }
+    
+    public static double getAverageRank(String name, String gender) {
+        //get director
+        DirectoryResource dr = new DirectoryResource();
+        int fileNum = 0;
+        int totalRank = 0;
+		
+        for(File fi : dr.selectedFiles()){
+            fileNum++;
+			
+            //get the file resource
+            FileResource fr = new FileResource(fi);
+            
+            int pivot = 0;
+            int currRank = 0;
+            for(CSVRecord record : fr.getCSVParser(false) ){
+                if(record.get(1).equals(gender)) {
+                    pivot++;
+                    if(record.get(0).equals(name)) {
+                        currRank = pivot;
+                        break;
+                    } //end if record.equals name condition;
+                }
+            }//end for Record loop;
+            totalRank += currRank;
+        }//end for file loop;
+        if(totalRank == 0) return -1;
+        else return (double)(totalRank)/fileNum;
+    }
+
+    public static int getTotalBirthsRankedHigher(int year, String name, String gender) {
+        FileResource fr = new FileResource("babynamedata/us_babynames_test/yob" + String.valueOf(year) +"short.csv");
+		
+        int sum = 0;
+        for(CSVRecord record : fr.getCSVParser(false)){
+            
+            if(record.get(1).equals(gender)){
+				
+                if(record.get(0).equals(name)) 
+                return sum;
+				
+                sum += Integer.parseInt(record.get(2));
+								
+            }//end if record euqals gender condition;
+			
+        }//end for CSV record record;
+		
+        return sum;
+    }//end getTotalBirthsRankedHigher() method;
+	
+
+
+    //                    *** TESTER METHODS ***
+    public void testYearOfHighestRank() {
+        yearOfHighestRank("Anna", "F");
+    }
+    
     public void testWhatIsNameInYear() {
         whatIsNameInYear("Anna", "F", 1880, 1900);
     }
