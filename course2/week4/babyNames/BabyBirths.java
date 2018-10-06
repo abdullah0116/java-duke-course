@@ -88,9 +88,41 @@ public class BabyBirths {
                 }
             }
         }
-        return null;
+        return "No Name is Found!";
     }
+    
+    public void whatIsNameInYear(String name, String gender, int year, int newYear) {
+        String yearBornStri = Integer.toString(year);
+        String newYearStri = Integer.toString(newYear);
+        int rankBorn = 0;
+        int rankNew = 0;
+        FileResource bornYearFile = new FileResource("us_babynames/us_babynames_by_year/yob"
+                                                    + yearBornStri + ".csv");
+        FileResource newYearFile = new FileResource("us_babynames/us_babynames_by_year/yob"
+                                                    + newYearStri + ".csv");
+        
+        //              *** birth year rank loop ***
+        for (CSVRecord record : bornYearFile.getCSVParser(false)) {
+            if (record.get(1).equals(gender)) {
+                rankBorn++;
+                
+                if (record.get(0).equals(name)) {
+                    break;
+                }
+            }
+        }
+        // Isabella born in 2012 would be Sophia if she was born in 2014.
+        System.out.println(name + " born in " + year + " would be " 
+                                              + getName(newYear, rankBorn, gender)
+                                              + " if she was born in "
+                                              + newYear + ".");
+    }
+    
     //                    *** TESTER METHODS *** 
+    public void testWhatIsNameInYear() {
+        whatIsNameInYear("Anna", "F", 1880, 1900);
+    }
+    
     public void testGetName() {
         System.out.println("The name your looking for: " + getName(1880, 2, "F"));
     }
