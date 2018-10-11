@@ -1,5 +1,27 @@
+import edu.duke.*;
 
 public class CourseThree {
+    public String encrypt(String input, int key) {
+        // make a StringBuilder with message (encrypted)
+        StringBuilder newString = new StringBuilder("encrypted");
+        // Write down the alphabet and save it to a variable 
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        // compute the shifted alphabet
+        
+        // count from 0 to < length of encrypted, (call it i)
+        
+            // Look at the iTH character of encrypted (call it currChar)
+            
+            // find the index of currChar in the alphabet (call it idx)
+            
+            // if currChar is the alphabet 
+                // get the idxth character of shiftedAlphabet (newChar)
+                // replace the iTH character of encrypted with newChar
+            // otherwise 
+                // do nothing 
+        // return String inside of encrypted        
+        return "";
+    }
     public String reverse(String s){
         String answer = "";
         
