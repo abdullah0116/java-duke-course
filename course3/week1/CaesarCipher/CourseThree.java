@@ -3,25 +3,34 @@ import edu.duke.*;
 public class CourseThree {
     public String encrypt(String input, int key) {
         // make a StringBuilder with message (encrypted)
-        StringBuilder newString = new StringBuilder("encrypted");
+        StringBuilder encrypted = new StringBuilder(input);
         // Write down the alphabet and save it to a variable 
         String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         // compute the shifted alphabet
-        
+        String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
         // count from 0 to < length of encrypted, (call it i)
-        
+        for (int i = 0; i < encrypted.length(); i++) {
             // Look at the iTH character of encrypted (call it currChar)
-            
+            char currChar = encrypted.charAt(i);
             // find the index of currChar in the alphabet (call it idx)
-            
+            int idx = alphabet.indexOf(currChar);
             // if currChar is the alphabet 
+            if (idx != -1) {
                 // get the idxth character of shiftedAlphabet (newChar)
+                char newChar = shiftedAlphabet.charAt(idx);
                 // replace the iTH character of encrypted with newChar
+                encrypted.setCharAt(i , newChar);
+            } 
+            
             // otherwise 
-                // do nothing 
+            // do nothing
+                
+        }
+        
         // return String inside of encrypted        
-        return "";
+        return encrypted.toString();
     }
+    
     public String reverse(String s){
         String answer = "";
         
@@ -43,6 +52,16 @@ public class CourseThree {
     }
     
     //                      *** TESTER METHODS ***
+    public void encryptTest() {
+        int key = 17;
+        FileResource fr = new FileResource();
+        String message = fr.asString();
+        String encrypted = encrypt(message, key);
+        System.out.println("Encrypted message: " + encrypted);
+        String decrypted = encrypt(encrypted, 26 - key);
+        System.out.println("Decrypted message: " + decrypted);
+    }
+    
     public void conversionTest() {
         String test = "ABCabc0123456789';#!";
         for (int i = 0; i < test.length(); i++) {
