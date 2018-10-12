@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=WordPlay
+comment1.params=ch
+comment1.target=boolean\ isVowel(char)
+comment2.params=
+comment2.target=void\ testIsVowel()
+numComments=3
