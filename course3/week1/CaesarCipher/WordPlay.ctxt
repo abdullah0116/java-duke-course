@@ -1,7 +1,11 @@
 #BlueJ class context
 comment0.target=WordPlay
-comment1.params=ch
-comment1.target=boolean\ isVowel(char)
-comment2.params=
-comment2.target=void\ testIsVowel()
-numComments=3
+comment1.params=phrase\ ch
+comment1.target=java.lang.String\ replaceVowels(java.lang.String,\ char)
+comment2.params=ch
+comment2.target=boolean\ isVowel(char)
+comment3.params=
+comment3.target=void\ testReplaceVowels()
+comment4.params=
+comment4.target=void\ testIsVowel()
+numComments=5
