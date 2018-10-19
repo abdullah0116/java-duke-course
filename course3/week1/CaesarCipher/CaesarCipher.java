@@ -1,3 +1,4 @@
+import edu.duke.*;
 
 public class CaesarCipher {
     public String encrypt(String input, int key) {
@@ -31,6 +32,15 @@ public class CaesarCipher {
     }
     
     //                    *** TESTER METHODS ***
+    public void testCaesar() {
+        int key = 17; 
+        FileResource fr = new FileResource();
+        String message = fr.asString();
+        String encrypted = encrypt(message, key);
+        System.out.println("Non Encrypted Message: " + message);
+        System.out.println("Encrypted Message: " + encrypted + " using key: " + key);
+    }
+    
     public void testEncryption() {
         System.out.println(encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
     }
