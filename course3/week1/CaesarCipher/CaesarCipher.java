@@ -1,37 +1,67 @@
 import edu.duke.*;
 
 public class CaesarCipher {
-    public String encrypt(String input, int key) {
-        // make a StringBuilder with message (encrypted)
-        StringBuilder encrypted = new StringBuilder(input);
-        // Write down the alphabet and save it to a variable 
-        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        // compute the shifted alphabet
-        String shiftedAlphabet = alphabet.substring(key) + alphabet.substring(0, key);
-        // count from 0 to < length of encrypted, (call it i)
-        for (int i = 0; i < encrypted.length(); i++) {
-            // Look at the iTH character of encrypted (call it currChar)
-            char currChar = encrypted.charAt(i);
-            // find the index of currChar in the alphabet (call it idx)
-            int idx = alphabet.indexOf(currChar);
-            // if currChar is the alphabet 
-            if (idx != -1) {
-                // get the idxth character of shiftedAlphabet (newChar)
-                char newChar = shiftedAlphabet.charAt(idx);
-                // replace the iTH character of encrypted with newChar
-                encrypted.setCharAt(i , newChar);
-            } 
-            
-            // otherwise 
-            // do nothing
-                
+   public String encrypt(String input, int key) {
+       // make a StringBuilder with message (encrypted)
+       //input = input.toUpperCase();
+       StringBuilder encrypted = new StringBuilder(input);
+       //Write down the alphabet
+       String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+       //Compute the shifted alphabet
+       String shiftedAlphabet = alphabet.substring(key)+
+       alphabet.substring(0,key);
+       //Count from 0 to < length of encrypted, (call it i)
+       for(int i = 0; i < encrypted.length(); i++) {
+           //Look at the ith character of encrypted (call it currChar)
+           char currChar = encrypted.charAt(i);
+           //Find the index of currChar in the alphabet (call it idx)
+           int idx = alphabet.indexOf(Character.toUpperCase(currChar));
+           //If currChar is in the alphabet
+           if(idx != -1){
+               //Get the idxth character of shiftedAlphabet (newChar)
+               char newChar = shiftedAlphabet.charAt(idx);
+               //Replace the ith character of encrypted with newChar
+               if (Character.isLowerCase(currChar)) {
+                   newChar=Character.toLowerCase(newChar);
+               }
+               if (Character.isUpperCase(currChar)) {
+                   newChar=Character.toUpperCase(newChar);
+               }
+               encrypted.setCharAt(i, newChar);
+           }
+           //Otherwise: do nothing
         }
+       //Your answer is the String inside of encrypted
+       return encrypted.toString();
+   }
+    
+   public String encryptTwoKeys(String input, int key1, int key2){
+        StringBuilder result = new StringBuilder(input);
+        char[] resultChar = result.toString().toCharArray();
         
-        // return String inside of encrypted        
-        return encrypted.toString();
+        for (int i = 0; i < resultChar.length; i++) {
+            char currChar = resultChar[i];
+            
+            if (i % 2 == 0) {
+                String currCharStri = String.valueOf(currChar);
+                String newStri = encrypt(currCharStri, key1);
+                
+                result.setCharAt(i, newStri.charAt(0));
+            } else if (i % 2 != 0) {
+                String currCharStri = String.valueOf(currChar);
+                String newStri = encrypt(currCharStri, key2);
+                
+                result.setCharAt(i, newStri.charAt(0));
+            }
+        }
+        return result.toString();
     }
     
     //                    *** TESTER METHODS ***
+    public void testEncryptTwoKeys() {
+        System.out.println(encryptTwoKeys("First Legion", 23, 17));
+    }
+    
     public void testCaesar() {
         int key = 17; 
         FileResource fr = new FileResource();
