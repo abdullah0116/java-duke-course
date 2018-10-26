@@ -59,7 +59,7 @@ public class CaesarCipher {
     
     //                    *** TESTER METHODS ***
     public void testEncryptTwoKeys() {
-        System.out.println(encryptTwoKeys("First Legion", 23, 17));
+        System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
     }
     
     public void testCaesar() {
@@ -72,6 +72,6 @@ public class CaesarCipher {
     }
     
     public void testEncryption() {
-        System.out.println(encrypt("FIRST LEGION ATTACK EAST FLANK!", 23));
+        System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
     }
 }
