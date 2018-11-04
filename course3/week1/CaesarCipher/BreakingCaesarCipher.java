@@ -8,6 +8,18 @@ public class BreakingCaesarCipher {
         }
     }
     
+    public String decrypt(String encrypted, int key1,int key2) {
+        CaesarCipher cipher = new CaesarCipher();
+        String firstString = cipher.encrypt(encrypted, key1);
+        String finalResult = cipher.encrypt(firstString , key2);
+        
+        return finalResult;
+    }
+    
+    public void testDecrypt() {
+        System.out.println(decrypt("Hfs cpwewloj loks cd Hoto kyg Cyy.", 14, 24));
+    }
+    
     public void textFingerPrint(String string) {
         String alpha = "abcdefghijklmnopqrstuvwxyz";
         int[] counters = new int[26];
@@ -28,7 +40,7 @@ public class BreakingCaesarCipher {
         //    |
         //    V
         //  At noon be in the conference room with your hat on for a surprise party. YELL LOUD!
-        eyeBallDecrypt("Pi cddc qt xc iwt rdcutgtcrt gddb lxiw ndjg wpi dc udg p hjgegxht epgin. NTAA ADJS!");
+        eyeBallDecrypt("Top ncmy qkff vi vguv vbg ycpx");
     }
     
     public void testTextFingerPrint() {

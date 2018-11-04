@@ -59,7 +59,7 @@ public class CaesarCipher {
     
     //                    *** TESTER METHODS ***
     public void testEncryptTwoKeys() {
-        System.out.println(encryptTwoKeys("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 8, 21));
+        System.out.println(encryptTwoKeys("Hfs cpwewloj loks cd Hoto kyg Cyy.", 14, 24));
     }
     
     public void testCaesar() {
@@ -72,6 +72,6 @@ public class CaesarCipher {
     }
     
     public void testEncryption() {
-        System.out.println(encrypt("At noon be in the conference room with your hat on for a surprise party. YELL LOUD!", 15));
+        System.out.println(encrypt("Can you imagine life WITHOUT the internet AND computers in your pocket?", 15));
     }
 }

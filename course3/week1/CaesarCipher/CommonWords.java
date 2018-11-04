@@ -29,7 +29,8 @@ public class CommonWords {
     		}
     	}
     }
-    void countShakespeare(){
+    
+    void countShakespeare() {
     	//String[] plays = {"caesar.txt", "errors.txt", "hamlet.txt",
     		//          "likeit.txt", "macbeth.txt", "romeo.txt"};
         String[] plays = {"small.txt"};
@@ -46,4 +47,10 @@ public class CommonWords {
     	}
     }
     
+    public int 
+    public String decrypt (String encrypted) {
+        CaesarCipher cc = new CaesarCipher();
+        int[] freqs = countLetters(encrypted);
+        
+    }
 }
