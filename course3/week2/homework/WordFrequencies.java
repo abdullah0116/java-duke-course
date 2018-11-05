@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.*;
 import edu.duke.*;
 
 public class WordFrequencies {
@@ -26,12 +26,29 @@ public class WordFrequencies {
         }
     }
     
+    public void findIndexOfMax() {
+        int currHighestValue = 0;
+        int highestIndex = 0;
+
+        for (int i = 0; i < myFreqs.size(); i++) {
+            if (currHighestValue < myFreqs.get(i)) {
+                currHighestValue = myFreqs.get(i);
+                highestIndex = myFreqs.indexOf(currHighestValue);
+            }
+        }
+        
+        System.out.println("Index of highest value: " + highestIndex
+        + " The value is: " + currHighestValue);
+    }
+    
     //                      *** TESTER METHODS ***
+    
     public void testFindUnique() {
         findUnique();
         System.out.println("# unique words: " + myWords.size());
         for (int i = 0; i < myWords.size(); i++) {
             System.out.println(myFreqs.get(i)+"\t" + myWords.get(i));
         }
+        findIndexOfMax();
     }
 }
