@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=LogAnalyzer
-comment1.params=someDay
-comment1.target=java.util.ArrayList\ uniqueIPVistsOnDay(java.lang.String)
+comment1.params=someday
+comment1.target=java.util.ArrayList\ uniqueIPVisitsOnDay(java.lang.String)
 comment2.params=num
 comment2.target=void\ printAllHigherThanNum(int)
 comment3.params=

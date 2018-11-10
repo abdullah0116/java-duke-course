@@ -10,6 +10,13 @@ import java.util.*;
 
 public class Tester
 {
+    public void testUniqueIPVisitsOnDay() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("weblog-short_log");
+        System.out.println(la.uniqueIPVisitsOnDay("Sep 30"));
+        
+    }
+    
     public void testPrintAllHigherThanNum() {
         LogAnalyzer la = new LogAnalyzer();
         la.readFile("short-test_log");

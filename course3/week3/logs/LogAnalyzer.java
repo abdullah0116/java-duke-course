@@ -6,18 +6,17 @@ public class LogAnalyzer
 {
      private ArrayList<LogEntry> records; //      Dec 01
                                        // format "MMM DD"
-     public ArrayList uniqueIPVistsOnDay(String someDay) {
-         ArrayList<LogEntry> matchedData = new ArrayList<LogEntry>();
-         
-         System.out.println("Data displaying for the date: " + someDay);
-         
+     public ArrayList<String> uniqueIPVisitsOnDay(String someday){
+         ArrayList<String> ips = new ArrayList<String>();
+         System.out.println("Data displaying is for the date: " + someday);
          for (LogEntry log : records) {
-             String date = log.getAccessTime().toString();
-             if (records.contains(date)) {
-                 matchedData.add(log);
+             String currDate = log.getAccessTime().toString();
+             currDate = currDate.substring(4, 10);
+             if (currDate.equals(someday) && !ips.contains(log.getIpAddress())) {
+                 ips.add(log.getIpAddress());
              }
          }
-         return matchedData;
+         return ips;
      }
      
      public void printAllHigherThanNum(int num) {
