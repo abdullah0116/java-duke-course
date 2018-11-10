@@ -1,11 +1,4 @@
 
-/**
- * Write a description of class LogAnalyzer here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-
 import java.util.*;
 import edu.duke.*;
 
@@ -32,5 +25,20 @@ public class LogAnalyzer
          }
      }
      
-     
+     public int countUniqueIPs() {
+         //uniqueIPs starts as an empty list 
+         ArrayList<String> uniqueIPs = new ArrayList<String>();
+         // for each element le in records
+         for (LogEntry log : records) {
+         //ipAddr is le's ipAddress
+         String ipAddr = log.getIpAddress();
+            //if ipAddr is not in uniqueIPs {
+             if (!uniqueIPs.contains(ipAddr)) {
+                 // add ipAddr to uniqueIps
+                 uniqueIPs.add(ipAddr);
+            }
+         }
+         // return the size of uniqueIPs
+         return uniqueIPs.size();
+     }
 }
