@@ -6,6 +6,15 @@ public class LogAnalyzer
 {
      private ArrayList<LogEntry> records;
      
+     public void printAllHigherThanNum(int num) {
+         for (LogEntry log : records) {
+            int statusCode = log.getStatusCode();
+            if (statusCode > num) {
+                System.out.println("this status code " + statusCode + " is higher than: " + num);
+            }
+         }
+     }
+     
      public LogAnalyzer() {
          // complete constructor
          records = new ArrayList<LogEntry>();

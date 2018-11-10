@@ -10,6 +10,12 @@ import java.util.*;
 
 public class Tester
 {
+    public void testPrintAllHigherThanNum() {
+        LogAnalyzer la = new LogAnalyzer();
+        la.readFile("short-test_log");
+        la.printAllHigherThanNum(200);
+    }
+    
     public void testUniqueIP() {
         LogAnalyzer la = new LogAnalyzer();
         la.readFile("short-test_log");
