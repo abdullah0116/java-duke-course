@@ -4,7 +4,21 @@ import edu.duke.*;
 
 public class LogAnalyzer
 {
-     private ArrayList<LogEntry> records;
+     private ArrayList<LogEntry> records; //      Dec 01
+                                       // format "MMM DD"
+     public ArrayList uniqueIPVistsOnDay(String someDay) {
+         ArrayList<LogEntry> matchedData = new ArrayList<LogEntry>();
+         
+         System.out.println("Data displaying for the date: " + someDay);
+         
+         for (LogEntry log : records) {
+             String date = log.getAccessTime().toString();
+             if (records.contains(date)) {
+                 matchedData.add(log);
+             }
+         }
+         return matchedData;
+     }
      
      public void printAllHigherThanNum(int num) {
          for (LogEntry log : records) {
