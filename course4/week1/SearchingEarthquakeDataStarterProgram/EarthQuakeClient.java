@@ -6,6 +6,26 @@ public class EarthQuakeClient {
        // TODO Auto-generated constructor stub
    }
 
+   /* 
+   Write the void method quakesOfDepth that has no parameters to use 
+   filterByDepth and print all the earthquakes from a data source whose 
+   depth is between a given minimum and maximum value. You should also 
+   print out the number of earthquakes found. After writing this method, 
+   when you run your program on the file nov20quakedatasmall.atom for 
+   quakes with depth between -10000.0 and -5000.0
+   */
+   
+   public void quakesOfDepth() {
+       EarthQuakeParser parser = new EarthQuakeParser();
+       String source = "nov20quakedatasmall.atom";
+       ArrayList<QuakeEntry> list  = parser.read(source);
+       ArrayList<QuakeEntry> depthsFilterList = filterByDepth(list, 100, 700);
+       
+       for (QuakeEntry qe : depthsFilterList) {
+           System.out.println(qe);
+       }
+   }
+   
     /* 
     Write the This method should 
     return an ArrayList of type QuakeEntry of all the earthquakes 
@@ -23,7 +43,7 @@ public class EarthQuakeClient {
         ArrayList<QuakeEntry> earthQuakes = new ArrayList<QuakeEntry>();
         
         for (QuakeEntry qe : quakeData) {
-            if (qe.getDepth() > minDepth) {
+            if (qe.getDepth() > minDepth && qe.getDepth() < maxDepth) {
                 earthQuakes.add(qe);
             }
         }
@@ -110,17 +130,6 @@ public class EarthQuakeClient {
         dumpCSV(list);
         System.out.println("# quakes read: " + list.size());
         for (QuakeEntry qe : list) {
-            System.out.println(qe);
-        }
-    }
-    
-    public void testDepthFilter() {
-        EarthQuakeParser parser = new EarthQuakeParser();
-        String source = "data/nov20quakedata.atom";
-        ArrayList<QuakeEntry> list  = parser.read(source);
-        ArrayList<QuakeEntry> test = filterByDepth(list, 300, 610.0);
-        
-        for(QuakeEntry qe : test) {
             System.out.println(qe);
         }
     }
