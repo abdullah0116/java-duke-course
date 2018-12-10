@@ -17,13 +17,18 @@ public class EarthQuakeClient {
    
    public void quakesOfDepth() {
        EarthQuakeParser parser = new EarthQuakeParser();
-       String source = "nov20quakedatasmall.atom";
+       String source = "data/nov20quakedatasmall.atom";
+       double min = -10000.0;
+       double max = -5000.0;
        ArrayList<QuakeEntry> list  = parser.read(source);
-       ArrayList<QuakeEntry> depthsFilterList = filterByDepth(list, 100, 700);
+       ArrayList<QuakeEntry> depthsFilterList = filterByDepth(list, min, max);
        
+       System.out.println("read data for" + list.size() + "quakes.");
+       System.out.println("Find quakes with depth between" + min + " and " + max);
        for (QuakeEntry qe : depthsFilterList) {
            System.out.println(qe);
        }
+       System.out.println("Found " + depthsFilterList.size() + " quakes that match that criteria.");
    }
    
     /* 
