@@ -2,10 +2,36 @@ import java.util.*;
 import edu.duke.*;
 
 public class EarthQuakeClient {
-    public EarthQuakeClient() {
-        // TODO Auto-generated constructor stub
-    }
+   public EarthQuakeClient() {
+       // TODO Auto-generated constructor stub
+   }
 
+    /* 
+    Write the This method should 
+    return an ArrayList of type QuakeEntry of all the earthquakes 
+    from quakeData whose depth is between minDepth and maxDepth, exclusive. 
+    (Do not include quakes with depth exactly minDepth or maxDepth.) 
+    */
+    
+   /*  method filterByDepth that has three parameters, 
+    an ArrayList of type QuakeEntry named quakeData, a double 
+    named minDepth and a double named maxDepth. */
+    
+    public ArrayList<QuakeEntry> filterByDepth(ArrayList<QuakeEntry> quakeData,
+                                               double minDepth, 
+                                               double maxDepth) {
+        ArrayList<QuakeEntry> earthQuakes = new ArrayList<QuakeEntry>();
+        
+        for (QuakeEntry qe : quakeData) {
+            if (qe.getDepth() > minDepth) {
+                earthQuakes.add(qe);
+            }
+        }
+        
+        //return an ArrayList of type QuakeEntry of all the earthquakes 
+        return earthQuakes;
+   }
+   
     public ArrayList<QuakeEntry> filterByMagnitude(ArrayList<QuakeEntry> quakeData,
     double magMin) {
         ArrayList<QuakeEntry> answer = new ArrayList<QuakeEntry>();
@@ -49,7 +75,6 @@ public class EarthQuakeClient {
         String source = "data/nov20quakedata.atom";
         ArrayList<QuakeEntry> list  = parser.read(source);
         ArrayList<QuakeEntry> largerThanMinQuakes = filterByMagnitude(list, min);
-
         // size of arraylist
         System.out.println("Quakes that are larger than: " + min);
         System.out.println("read data for "+ largerThanMinQuakes.size() +" quakes");
@@ -66,9 +91,9 @@ public class EarthQuakeClient {
         System.out.println("# quakes read: " + list.size());
         
         //Durham, NC
-        //Location city = new Location(35.988, -78.907);
+        Location city = new Location(35.988, -78.907);
         //Bridgeport, CA
-        Location city = new Location(38.17, -118.82);
+       // Location city = new Location(38.17, -118.82);
         ArrayList<QuakeEntry> close = filterByDistanceFrom(list, 1000*1000, city);
         for (int k=0; k< close.size(); k++) {
             QuakeEntry entry = close.get(k);
@@ -89,4 +114,14 @@ public class EarthQuakeClient {
         }
     }
     
+    public void testDepthFilter() {
+        EarthQuakeParser parser = new EarthQuakeParser();
+        String source = "data/nov20quakedata.atom";
+        ArrayList<QuakeEntry> list  = parser.read(source);
+        ArrayList<QuakeEntry> test = filterByDepth(list, 300, 610.0);
+        
+        for(QuakeEntry qe : test) {
+            System.out.println(qe);
+        }
+    }
 }
