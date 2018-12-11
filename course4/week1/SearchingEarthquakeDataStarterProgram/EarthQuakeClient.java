@@ -6,6 +6,8 @@ public class EarthQuakeClient {
        // TODO Auto-generated constructor stub
    }
 
+   
+   
    /* 
    Write the void method quakesOfDepth that has no parameters to use 
    filterByDepth and print all the earthquakes from a data source whose 
@@ -23,7 +25,7 @@ public class EarthQuakeClient {
        ArrayList<QuakeEntry> list  = parser.read(source);
        ArrayList<QuakeEntry> depthsFilterList = filterByDepth(list, min, max);
        
-       System.out.println("read data for" + list.size() + "quakes.");
+       System.out.println("read data for " + list.size() + " quakes.");
        System.out.println("Find quakes with depth between" + min + " and " + max);
        for (QuakeEntry qe : depthsFilterList) {
            System.out.println(qe);
@@ -31,17 +33,6 @@ public class EarthQuakeClient {
        System.out.println("Found " + depthsFilterList.size() + " quakes that match that criteria.");
    }
    
-    /* 
-    Write the This method should 
-    return an ArrayList of type QuakeEntry of all the earthquakes 
-    from quakeData whose depth is between minDepth and maxDepth, exclusive. 
-    (Do not include quakes with depth exactly minDepth or maxDepth.) 
-    */
-    
-   /*  method filterByDepth that has three parameters, 
-    an ArrayList of type QuakeEntry named quakeData, a double 
-    named minDepth and a double named maxDepth. */
-    
     public ArrayList<QuakeEntry> filterByDepth(ArrayList<QuakeEntry> quakeData,
                                                double minDepth, 
                                                double maxDepth) {
@@ -53,7 +44,6 @@ public class EarthQuakeClient {
             }
         }
         
-        //return an ArrayList of type QuakeEntry of all the earthquakes 
         return earthQuakes;
    }
    

@@ -7,7 +7,6 @@ comment2.target=void\ quakesOfDepth()
 comment2.text=\ \n\ \ \ Write\ the\ void\ method\ quakesOfDepth\ that\ has\ no\ parameters\ to\ use\ \n\ \ \ filterByDepth\ and\ print\ all\ the\ earthquakes\ from\ a\ data\ source\ whose\ \n\ \ \ depth\ is\ between\ a\ given\ minimum\ and\ maximum\ value.\ You\ should\ also\ \n\ \ \ print\ out\ the\ number\ of\ earthquakes\ found.\ After\ writing\ this\ method,\ \n\ \ \ when\ you\ run\ your\ program\ on\ the\ file\ nov20quakedatasmall.atom\ for\ \n\ \ \ quakes\ with\ depth\ between\ -10000.0\ and\ -5000.0\n
 comment3.params=quakeData\ minDepth\ maxDepth
 comment3.target=java.util.ArrayList\ filterByDepth(java.util.ArrayList,\ double,\ double)
-comment3.text=\ \ method\ filterByDepth\ that\ has\ three\ parameters,\ \n\ \ \ \ an\ ArrayList\ of\ type\ QuakeEntry\ named\ quakeData,\ a\ double\ \nnamed\ minDepth\ and\ a\ double\ named\ maxDepth.
 comment4.params=quakeData\ magMin
 comment4.target=java.util.ArrayList\ filterByMagnitude(java.util.ArrayList,\ double)
 comment5.params=quakeData\ distMax\ from
