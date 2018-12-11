@@ -6,8 +6,29 @@ public class EarthQuakeClient {
        // TODO Auto-generated constructor stub
    }
 
+    /* 
+     * Write the method filterByPhrase that has three parameters, an ArrayList of type
+     * QuakeEntry named quakeData, a String named where that indicates where to search 
+     * in the title and has one of three values: (“start”, ”end”, or “any”), and a String 
+     * named phrase, indicating the phrase to search for in the title of the earthquake. 
+     * The title of the earthquake can be obtained through the getInfo() method. 
+     * The filterByPhrase method should return an ArrayList of type QuakeEntry 
+     * of all the earthquakes from quakeData whose titles have the given phrase found 
+     * at location where (“start” means the phrase must start the title, “end” means 
+     * the phrase must end the title and “any” means the phrase is a substring anywhere 
+     * in the title.)
+       */   
    
-   
+   public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
+       ArrayList<QuakeEntry> filterByPhraseList = new ArrayList<QuakeEntry>();
+       for(QuakeEntry qe : quakeData) {
+           if(qe.getInfo().contains(phrase)) {
+               filterByPhraseList.add(qe);
+           }
+       }
+       return filterByPhraseList;
+   }
+      
    /* 
    Write the void method quakesOfDepth that has no parameters to use 
    filterByDepth and print all the earthquakes from a data source whose 
