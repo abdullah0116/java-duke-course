@@ -21,14 +21,25 @@ public class EarthQuakeClient {
    
    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
        ArrayList<QuakeEntry> filterByPhraseList = new ArrayList<QuakeEntry>();
+       
        for(QuakeEntry qe : quakeData) {
            if(qe.getInfo().contains(phrase)) {
-               filterByPhraseList.add(qe);
+               
            }
        }
+       
        return filterByPhraseList;
    }
-      
+   
+   public void tester() {
+       EarthQuakeParser parser = new EarthQuakeParser();
+       String source = "data/nov20quakedatasmall.atom";
+       ArrayList<QuakeEntry> list = parser.read(source);
+       ArrayList<QuakeEntry> randomList = filterByPhrase(list, "any", "California");
+       for(QuakeEntry qe : randomList) {
+           System.out.println(qe);
+       }
+   }
    /* 
    Write the void method quakesOfDepth that has no parameters to use 
    filterByDepth and print all the earthquakes from a data source whose 
