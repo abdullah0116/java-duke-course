@@ -6,6 +6,18 @@ public class EarthQuakeClient {
        // TODO Auto-generated constructor stub
    }
 
+   public void quakesByPhrase() {
+       EarthQuakeParser parser = new EarthQuakeParser();
+       String source = "data/nov20quakedatasmall.atom";
+       ArrayList<QuakeEntry> list = parser.read(source);
+       ArrayList<QuakeEntry> phrasesList = filterByPhrase(list, "start", "Explosion");
+       
+       System.out.println("read data for " + list.size() + " quakes.");
+       for(QuakeEntry qe : phrasesList) {
+           System.out.println(qe);
+       }
+   }
+   
     /* 
      * Write the method filterByPhrase that has three parameters, an ArrayList of type
      * QuakeEntry named quakeData, a String named where that indicates where to search 
@@ -21,13 +33,23 @@ public class EarthQuakeClient {
    
    public ArrayList<QuakeEntry> filterByPhrase(ArrayList<QuakeEntry> quakeData, String where, String phrase) {
        ArrayList<QuakeEntry> filterByPhraseList = new ArrayList<QuakeEntry>();
-       
+ 
        for(QuakeEntry qe : quakeData) {
-           if(qe.getInfo().contains(phrase)) {
-               
+           if (where.equals("start")) {
+               if(qe.getInfo().startsWith(phrase)) {
+                   filterByPhraseList.add(qe);
+               }
+           } else if(where.equals("end")) {
+               if(qe.getInfo().endsWith(phrase)) {
+                   filterByPhraseList.add(qe);
+               } 
+           } else if(where.equals("any")) {
+               if(qe.getInfo().contains(phrase)) {
+                   filterByPhraseList.add(qe);
+               }
            }
        }
-       
+              System.out.println("Found "+ filterByPhraseList.size() +" quakes that match " + phrase + " at " + where);
        return filterByPhraseList;
    }
    
