@@ -12,13 +12,11 @@ public class MagnitudeFilter implements Filter{
     //should include private instance variables for a minimum and maximum 
     private double minimum;
     private double maximum;
-    private double magnitude;
     
     //a constructor to initialize those variables
-    public MagnitudeFilter(double min, double max, double mag) {
+    public MagnitudeFilter(double min, double max) {
         minimum = min;
         maximum = max;
-        magnitude = mag;
     }
     
     public boolean satisfies(QuakeEntry qe) {

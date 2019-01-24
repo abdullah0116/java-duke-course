@@ -24,11 +24,16 @@ public class EarthQuakeClient2 {
         ArrayList<QuakeEntry> list  = parser.read(source);         
         System.out.println("read data for "+list.size()+" quakes");
 
-        Filter f = new MinMagFilter(4.0); 
-        ArrayList<QuakeEntry> m7  = filter(list, f); 
+        //Filter f = new MinMagFilter(4.0); 
+        Filter fMag = new MagnitudeFilter(4.0, 5.0);
+	Filter fDepth = new DepthFilter(-35000.0, -12000.0);
+	
+        ArrayList<QuakeEntry> m7  = filter(list, fMag); 
+        m7 = filter(m7, fDepth);
         for (QuakeEntry qe: m7) { 
             System.out.println(qe);
         } 
+        System.out.println("Found " + m7.size() + " quakes that match that criteria\n");
     }
 
     public void createCSV() {
